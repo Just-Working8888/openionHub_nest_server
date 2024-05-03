@@ -9,7 +9,9 @@ export class AuthController {
 
     @Post('/login')
     login(@Body() userDto: CreateUserDto) {
-        return this.authService.login(userDto)
+        console.log(userDto, '===============================================================');
+
+        return this.authService.login(userDto )
     }
 
     @Post('/registration')

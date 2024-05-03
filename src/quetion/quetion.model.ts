@@ -28,12 +28,7 @@ export class Question extends Model<Question, QuestionCreationAttrs> {
     @Column({ type: DataType.STRING, allowNull: false })
     correctAnswer: string;
 
-    @ForeignKey(() => Category)
-    @Column({ type: DataType.INTEGER })
-    categoryId: number;
-
-    @BelongsTo(() => Category)
-    category: Category;
+   
 
     @ForeignKey(() => Quetions) // Указание внешнего ключа для отношения с моделью Quetions
     @Column({ type: DataType.INTEGER }) // тип должен совпадать с типом идентификатора модели Quetions

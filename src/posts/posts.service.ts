@@ -7,8 +7,11 @@ import { FilesService } from "../files/files.service";
 @Injectable()
 export class PostsService {
 
-    constructor(@InjectModel(Post) private postRepository: typeof Post,
-        private fileService: FilesService) { }
+    constructor(
+        @InjectModel(Post)
+        private postRepository: typeof Post,
+        private fileService: FilesService
+    ) { }
 
     async create(dto: CreatePostDto, image: any) {
         try {

@@ -20,10 +20,11 @@ import { Quetions } from "./quetions/quetions.model";
 import { Question } from "./quetion/quetion.model";
 import { Category } from "./category/category.model";
 import { QuetionModule } from './quetion/quetion.module';
+import { CategoryQuetions } from "./quetions/category-quetion.model";
 
 @Module({
-    controllers: [CategoryController],
-    providers: [CategoryService],
+    controllers: [],
+    providers: [],
     imports: [
         ConfigModule.forRoot({
             envFilePath: `.${process.env.NODE_ENV}.env`
@@ -38,7 +39,7 @@ import { QuetionModule } from './quetion/quetion.module';
             username: process.env.POSTGRES_USER,
             password: process.env.POSTGRES_PASSWORD,
             database: process.env.POSTGRES_DB,
-            models: [User, Role, UserRoles, Post, Quetions, Question, Category],
+            models: [User, Role, UserRoles, Post, Quetions, Question, Category, CategoryQuetions],
             autoLoadModels: true
         }),
         UsersModule,
@@ -49,7 +50,7 @@ import { QuetionModule } from './quetion/quetion.module';
         QuetionsModule,
         CategoryModule,
         QuetionModule,
-        
+
     ]
 })
 export class AppModule {

@@ -7,12 +7,13 @@ import { Question } from '../quetion/quetion.model';
 import { Category } from 'src/category/category.model';
 import { UserQuetions } from './user-quetions.model';
 import { FilesService } from 'src/files/files.service';
+import { CategoryQuetions } from './category-quetion.model';
 
 @Module({
   providers: [QuetionsService, FilesService],
   controllers: [QuetionsController],
   imports: [
-    SequelizeModule.forFeature([Quetions, Question, Category, UserQuetions]),
+    SequelizeModule.forFeature([Quetions, Question, Category, UserQuetions, CategoryQuetions]),
   ],
   exports: [QuetionsService]
 })

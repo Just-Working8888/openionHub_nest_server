@@ -1,10 +1,12 @@
 import { BelongsTo, Column, DataType, ForeignKey, HasMany, Model, Table } from "sequelize-typescript";
 import { Question } from "../quetion/quetion.model";
 import { User } from "src/users/users.model";
+import { Category } from "src/category/category.model";
 
 interface QuetionsCreationAttrs {
     title: string;
     image: string;
+    description: string
     questions: Question[]
 }
 
@@ -16,6 +18,8 @@ export class Quetions extends Model<Quetions, QuetionsCreationAttrs> {
     @Column({ type: DataType.STRING, unique: true, allowNull: false })
     title: string;
 
+    @Column({ type: DataType.STRING, unique: true, allowNull: false })
+    description: string;
 
     @Column({ type: DataType.STRING })
     image: string;
@@ -23,7 +27,13 @@ export class Quetions extends Model<Quetions, QuetionsCreationAttrs> {
     @HasMany(() => Question)
     questions: Question[];
 
+    @ForeignKey(() => Category)
+    @Column({ type: DataType.INTEGER })
+    categoryId: number;
+    // description
 
+    @BelongsTo(() => Category)
+    category: Category;
     @BelongsTo(() => User) // Определение отношения с моделью User
     user: User; // Поле для связи с моделью User
 

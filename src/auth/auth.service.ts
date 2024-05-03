@@ -12,8 +12,12 @@ export class AuthService {
     ) { }
 
     async login(userDto: CreateUserDto) {
+        
         const user = await this.validateUser(userDto)
-        return this.geneateToken(user)
+        console.log(user,'=========================================--------------------------=----------=---------------==');
+        
+        const token = this.geneateToken(user)
+        return { token: (await token).token, userId: user.id }
     }
 
     async registration(userDto: CreateUserDto) {
@@ -32,7 +36,11 @@ export class AuthService {
         }
     }
     private async validateUser(userDto: CreateUserDto) {
+        console.log(userDto,'======================================================');
+        
         const user = await this.userService.getUserByEmail(userDto.email)
+      
+        
         const passwordEqual = await bcrypt.compare(userDto.password, user.password)
         if (user && passwordEqual) {
             return user

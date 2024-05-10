@@ -59,4 +59,22 @@ export class QuetionsService {
             throw new InternalServerErrorException(`Ошибка при получении вопроса с id ${id}`);
         }
     }
+
+    async updateQuetion(id: string, dto: CreateQuetionsDto): Promise<Quetions> {
+        const question = await this.quetionRepository.findByPk(id); // Using findByPk to find by primary key
+        if (!question) {
+            throw new NotFoundException('Question not found');
+        }
+        // Update the properties of the question entity
+        question.title = dto.title;
+        question.description = dto.description;
+        // Save the updated question entity
+        try {
+            await question.save(); // Save the updated question
+            return question;
+        } catch (error) {
+            console.error(`Error updating question with id ${id}:`, error);
+            throw new InternalServerErrorException(`Error updating question with id ${id}`);
+        }
+    }
 }
